@@ -35,7 +35,7 @@ export default function Navbar() {
           Add Blog
         </Link>
         <Link href="/about" style={linkStyle("/about")}>
-          Add Blog
+          About
         </Link>
       </div>
     </nav>
