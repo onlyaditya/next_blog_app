@@ -8,7 +8,16 @@ export default function BlogList() {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    setBlogs(getBlogs());
+    fetch("https://blogs-app-backend-itdk.onrender.com/api/blogs")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch blogs");
+        return res.json();
+      })
+      .then((data) => setBlogs(data))
+      .catch((err) => {
+        console.error("Error fetching blogs:", err);
+        setBlogs([]);
+      });
   }, []);
 
   const containerStyle = {
@@ -80,7 +89,7 @@ export default function BlogList() {
                 ? blog.content.slice(0, 150) + "..."
                 : blog.content}
             </p>
-            <Link href={`/blog/${blog.id}`} style={linkStyle}>
+            <Link href={`/blog/${blog._id}`} style={linkStyle}>
               Read more →
             </Link>
           </div>

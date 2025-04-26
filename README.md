@@ -13,9 +13,6 @@
 │ ├── BlogCard.jsx
 │ ├── Header.jsx
 │ └── Footer.jsx
-├── /content ← Markdown blog posts
-│ ├── first-post.md
-│ └── second-post.md
 ├── /lib
 │ ├── markdown.js ← Parser for markdown (remark/gray-matter)
 │ └── posts.js ← Helper to read all posts

@@ -15,9 +15,23 @@ export default function BlogDetail({ params }) {
 
   useEffect(() => {
     if (!blogId) return;
-    const blogs = getBlogs();
-    const match = blogs.find((b) => b.id === blogId);
-    setBlog(match);
+
+    fetch(
+      `${"https://blogs-app-backend-itdk.onrender.com/api/blogs"}/${params.id}`
+    )
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch blog");
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+
+        setBlog(data);
+      })
+      .catch((err) => {
+        console.error("Error fetching blog:", err);
+        setBlog(null);
+      });
   }, [blogId]);
 
   if (!blog) {
